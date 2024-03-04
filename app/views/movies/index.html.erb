@@ -1,5 +1,6 @@
 <h1>Movies</h1>
 <%= link_to "Add new", new_movie_path %>
+<%= link_to "Add multiple", add_multiple_movies_path %>
 <% @movies.each do |movie| %>
   <div>
     <h2><%= movie.title %></h2>

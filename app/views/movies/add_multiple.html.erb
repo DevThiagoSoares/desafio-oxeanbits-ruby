@@ -1,0 +1,12 @@
+<!-- app/views/movies/add_multiple.html.erb -->
+<h1>Add Multiple Movies</h1>
+
+<%= form_tag create_multiple_movies_path, method: :post do %>
+  <div>
+    <%= label_tag 'movies_json', 'JSON Data:' %>
+    <%= text_area_tag 'movies', nil, rows: 5, cols: 40 %>
+  </div>
+
+  <%= submit_tag 'Add Movies' %>
+<% end %>
+
