@@ -12,5 +12,12 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
 
+  get 'movies/add_multiple', to: 'movies#add_multiple', as: 'add_multiple_movies'
+  post 'movies/create_multiple', to: 'movies#create_multiple', as: 'create_multiple_movies'
+
+
+  post 'movie_scores/update_scores', to: 'user_movies#update_scores'
+  get 'movie_scores/update_scores', to: 'user_movies#update_scores'
+
   root 'sessions#new'
 end

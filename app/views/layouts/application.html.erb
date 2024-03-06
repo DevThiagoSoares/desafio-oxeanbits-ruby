@@ -1,27 +1,77 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>MovieApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MovieApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
 
-  <body>
-    <nav>
-      <% if current_user %>
-        <% if current_user.admin? %>
-          <%= link_to "Create User", new_user_path %>
-        <% end %>
-        <%= form_tag logout_path, method: :delete do %>
-          <%= submit_tag "Logout" %>
-        <% end %>
+    nav {
+      background-color: #007bff;
+      padding: 10px;
+      text-align: right;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    nav form {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    nav input[type="submit"] {
+      background-color: #dc3545;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav input[type="submit"]:hover {
+      background-color: #c82333;
+    }
+
+    main {
+      padding-top: 60px; /* Adjust padding to account for fixed navbar */
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <% if current_user %>
+      <% if current_user.admin? %>
+        <%= link_to "Create User", new_user_path %>
       <% end %>
-    </nav>
+      <%= form_tag logout_path, method: :delete do %>
+        <%= submit_tag "Logout" %>
+      <% end %>
+    <% end %>
+  </nav>
 
+  <main>
     <%= yield %>
-  </body>
+  </main>
+</body>
+
 </html>

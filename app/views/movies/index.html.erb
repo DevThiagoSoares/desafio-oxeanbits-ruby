@@ -1,14 +1,145 @@
-<h1>Movies</h1>
-<%= link_to "Add new", new_movie_path %>
-<% @movies.each do |movie| %>
-  <div>
-    <h2><%= movie.title %></h2>
-    <p>Director: <%= movie.director %></p>
-    <p>Average Score: <%= movie.average_score %></p>
-    <%= form_for(current_user.user_movies.find_or_initialize_by(movie_id: movie.id), remote: true) do |f| %>
-      <%= f.hidden_field :movie_id, value: movie.id %>
-      <%= f.number_field :score, in: 1..10 %>
-      <%= f.submit "Rate" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movies App</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #007bff;
+      padding: 10px;
+      text-align: right;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    nav form {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    nav input[type="submit"] {
+      background-color: #dc3545;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    nav input[type="submit"]:hover {
+      background-color: #c82333;
+    }
+
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    h3 {
+      color: #007bff;
+      margin-bottom: 20px;
+      margin: 0 0 0 20px;
+    }
+
+    .movie-container {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      padding: 8px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <% if current_user %>
+      <% if current_user.admin? %>
+        <%= link_to "Create User", new_user_path %>
+      <% end %>
+      <%= form_tag logout_path, method: :delete do %>
+        <%= submit_tag "Logout" %>
+      <% end %>
     <% end %>
-  </div>
-<% end %>
+  </nav>
+
+ <h1>Movies</h1>
+<h3><%= link_to "Add new", new_movie_path %></h3>
+
+ <h3> <%= link_to "Add multiple", add_multiple_movies_path %></h3>
+
+ <h3> <%= link_to "Update Scores", movie_scores_update_scores_path, remote: true %></h3>
+
+
+  <% @movies.each do |movie| %>
+    <div class="movie-container">
+      <h2><%= movie.title %></h2>
+      <p>Director: <%= movie.director %></p>
+      <p>Average Score: <%= movie.average_score %></p>
+
+      <%= form_for(current_user.user_movies.find_or_initialize_by(movie_id: movie.id), remote: true) do |f| %>
+        <%= f.hidden_field :movie_id, value: movie.id %>
+        <%= f.number_field :score, in: 1..10 %>
+        <%= f.submit "Rate" %>
+      <% end %>
+    </div>
+  <% end %>
+</body>
+
+</html>
