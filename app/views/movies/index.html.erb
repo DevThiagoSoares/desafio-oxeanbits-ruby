@@ -55,6 +55,12 @@
       text-align: center;
     }
 
+    h3 {
+      color: #007bff;
+      margin-bottom: 20px;
+      margin: 0 0 0 20px;
+    }
+
     .movie-container {
       background-color: #fff;
       border: 1px solid #ced4da;
@@ -114,12 +120,12 @@
   </nav>
 
  <h1>Movies</h1>
-<%= link_to "Add new", new_movie_path %>
-<p>
-  <%= link_to "Add multiple", add_multiple_movies_path %>
-<p>
-  <%= link_to "Update Scores", movie_scores_update_scores_path, remote: true %>
-<p>
+<h3><%= link_to "Add new", new_movie_path %></h3>
+
+ <h3> <%= link_to "Add multiple", add_multiple_movies_path %></h3>
+
+ <h3> <%= link_to "Update Scores", movie_scores_update_scores_path, remote: true %></h3>
+
 
   <% @movies.each do |movie| %>
     <div class="movie-container">
