@@ -1,45 +1,72 @@
-### Desafio para vaga de BackEnd - Foco em Ruby On Rails:
+# Desafio OxeAnBits - Ruby on Rails
 
-Objetivo do Desafio:
+Bem-vindo ao projeto Desafio OxeAnBits em Ruby on Rails! Este README fornece informações sobre como executar o sistema localmente e explica algumas rotas importantes.
 
-O objetivo deste desafio é avaliar suas habilidades no desenvolvimento com o framework Ruby On Rails, bem como quaisquer integrações necessárias, a implementação de funcionalidades que executam em segundo plano de forma síncrona, a escrita de testes e a criação de uma documentação clara.
+## Clonando o Projeto
 
-#### Requisitos:
+Para obter uma cópia do projeto, execute o seguinte comando no terminal:
 
-- ruby-3.1.4
-- sqlite3
-
-Clone o projeto e ao executar:
-
-```ruby
-bundle install
-rails db:migrate
-rails db:seed
+```bash
+git clone https://github.com/DevThiagoSoares/desafio-oxeanbits-ruby.git
 ```
-Será configurado uma aplicação rails contando com as seguintes funcionalidades:
-- Usuário padrão admin@rotten e senha admin
-- Página de login
-- Rota para criação de novos usuários
-- Rota para cadastrar novo filme
-- Rota para dar nota nos filmes
-- Exibir a média das notas de cada filme
 
+## Executando o Projeto Ruby on Rails
 
-#### Desafio:
+1. Certifique-se de ter Ruby e Rails instalados em seu sistema.
+2. Navegue até o diretório do projeto:
 
-- Criar uma rota para importar em massa vários filmes
-  - Você pode criar essa rota para receber um arquivo csv ou um payload json, ou outra forma que ficar mais fácil de integrar
-- Criar uma rota para submeter notas em massa para vários filmes
-  - Você pode criar essa rota para receber um arquivo csv ou um payload json, ou outra forma que ficar mais fácil de integrar
-- As tarefas acima **devem ser executadas em segundo plano**
-  - Recomendamos usar o [Sidekiq](https://github.com/sidekiq/sidekiq) para gerenciar as tarefas em segundo plano, mas você pode escolher outra solução
+    ```bash
+    cd desafio-oxeanbits-ruby
+    ```
 
-#### Pontos Extras:
-- Criar testes para as rotas da API e models da aplicação
-  - Recomendamos usar o [Rspec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec) para os testes, mas você pode escolher outra solução
+3. Instale as dependências:
 
+    ```bash
+    bundle install
+    ```
 
-#### Entrega:
+4. Execute as migrações do banco de dados:
 
-No README.md descreva as instruções sobre como executar o projeto, configurar variáveis de ambiente e executar os testes.
-Ao finalizar, forneça um link para o repositório do GitHub contendo o código-fonte e a documentação, enviado para o email vagas{at}oxeanbits{dot}com
+    ```bash
+    rails db:migrate
+    ```
+
+5. Inicie o servidor Rails:
+
+    ```bash
+    rails server
+    ```
+
+Acesse o sistema em [http://localhost:3000](http://localhost:3000).
+
+## Rotas Importantes
+
+- **Login ou Página Inicial:** `/` ou `/login`
+  - Email: admin@rotten
+  - Senha: admin
+
+- **Tela de Filmes:** `/movies`
+  - **Adicionar Novo Filme:** `/movies/new`
+    - Parâmetros necessários: `title` e `director`
+  
+  - **Adicionar Múltiplos Filmes:** `/movies/add_multiple`
+    - Envie um JSON com o seguinte formato:
+      ```json
+      {
+        "movies": [
+          { "title": "Movie 1", "director": "Director 1" },
+          { "title": "Movie 2", "director": "Director 2" }
+        ]
+      }
+      ```
+  
+  - **Atualizar Scores:** `/movie_scores/update_scores`
+    - Envie um JSON com o seguinte formato:
+      ```json
+      [
+        { "movie_id": 1, "score": 4 },
+        { "movie_id": 2, "score": 4 }
+      ]
+      ```
+
+  - **Atualizar Score Individual:** Acesse a tela de filmes em `/movies` e atualize o campo `rate`.
