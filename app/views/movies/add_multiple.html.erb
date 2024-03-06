@@ -1,12 +1,64 @@
-<!-- app/views/movies/add_multiple.html.erb -->
-<h1>Add Multiple Movies</h1>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 20px;
+    }
 
-<%= form_tag create_multiple_movies_path, method: :post do %>
-  <div>
-    <%= label_tag 'movies_json', 'JSON Data:' %>
-    <%= text_area_tag 'movies', nil, rows: 5, cols: 40 %>
-  </div>
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-  <%= submit_tag 'Add Movies' %>
-<% end %>
+    form {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
+    label {
+      display: block;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+
+
+ <h1>Add Multiple Movies</h1>
+
+  <%= form_tag create_multiple_movies_path, method: :post do %>
+    <form>
+      <div>
+        <%= label_tag 'movies_json', 'JSON Data:' %>
+        <%= text_area_tag 'movies', nil, rows: 5, cols: 40 %>
+      </div>
+
+      <%= submit_tag 'Add Movies' %>
+    </form>
+  <% end %>
+  

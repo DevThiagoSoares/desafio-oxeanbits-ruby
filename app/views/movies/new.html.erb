@@ -1,15 +1,71 @@
-<h1>New Movie</h1>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 20px;
+    }
 
-<%= form_with(model: @movie, url: movies_path) do |form| %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-  <div>
-    <%= form.label :director %>
-    <%= form.text_field :director %>
-  </div>
+    form {
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-  <%= form.submit "Create Movie" %>
-<% end %>
+    div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+
+  <h1>New Movie</h1>
+
+  <%= form_with(model: @movie, url: movies_path) do |form| %>
+    <form>
+      <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div>
+        <%= form.label :director %>
+        <%= form.text_field :director %>
+      </div>
+
+      <%= form.submit "Create Movie" %>
+    </form>
+  <% end %>
+
